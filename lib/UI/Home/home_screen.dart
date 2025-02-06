@@ -1,24 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Model/animal.dart';
 import 'package:flutter_application_1/UI/AnimalDetails/animal_details_screen.dart';
+import 'package:flutter_application_1/UI/Home/home_view_model.dart';
+import 'package:provider/provider.dart';
 
-class HomeScreen extends StatefulWidget {
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
+class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Home")),
-      body: ListView.builder(
-        itemCount: animals.length,
-        itemBuilder: (context, index) {
-          return AnimalWidget(animal: animals[index]);
-        },
-      ),
-    );
+        appBar: AppBar(title: Text("Home")),
+        body: Consumer<HomeViewmodel>(builder: (context, viewModel, child) {
+          if (viewModel.isLoading) {
+            return Center(child: CircularProgressIndicator());
+          }
+          if (viewModel.errorMessage != null) {
+            return Center(child: Text(viewModel.errorMessage!));
+          }
+
+          if (viewModel.animals.isNotEmpty) {
+            return ListView.builder(
+                itemCount: viewModel.animals.length,
+                itemBuilder: (context, index) {
+                  return AnimalWidget(animal: viewModel.animals[index]);
+                });
+          } else {
+            return Center(child: Text("No animals to show"));
+          }
+        }));
   }
 }
 
@@ -60,7 +68,7 @@ class AnimalWidget extends StatelessWidget {
                     Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Name: ${animal.name ?? "Unknown"}"),
+                          Text("Name: ${animal.name}"),
                           Text("Age: ${animal.age}",
                               style: TextStyle(color: Colors.teal)),
                           Text("Breed: ${animal.breed}",
