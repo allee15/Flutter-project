@@ -3,7 +3,7 @@ import 'package:flutter_application_1/UI/Home/home_view_model.dart';
 import 'package:flutter_application_1/UI/root_view.dart';
 import 'package:provider/provider.dart';
 
-Future main() async {
+void main() {
   runApp(
     MultiProvider(
       providers: [
