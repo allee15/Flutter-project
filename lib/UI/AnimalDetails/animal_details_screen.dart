@@ -28,17 +28,7 @@ class _AnimalDetailsScreenState extends State<AnimalDetailsScreen> {
         body: Consumer<AnimalDetailsViewModel>(
             builder: (context, viewModel, child) {
           if (viewModel.isLoading) {
-            return Column(
-              children: [
-                SizedBox(height: MediaQuery.of(context).size.height / 2),
-                Row(children: [
-                  SizedBox(width: MediaQuery.of(context).size.width / 2),
-                  CircularProgressIndicator(color: Colors.teal),
-                  SizedBox(width: MediaQuery.of(context).size.width / 2),
-                ]),
-                SizedBox(height: MediaQuery.of(context).size.height / 2),
-              ],
-            );
+            return Center(child: CircularProgressIndicator(color: Colors.teal));
           }
 
           if (viewModel.errorMessage != null) {
@@ -78,11 +68,17 @@ class AnimalDetailsWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(width: 12),
-                Image.network(animalDetails.imageUrl,
-                    width: screenWidth * 0.85,
-                    height: screenHeight * 0.4,
-                    scale: 2,
-                    fit: BoxFit.fill),
+                animalDetails.imageUrl != ''
+                    ? Image.network(animalDetails.imageUrl,
+                        width: screenWidth * 0.85,
+                        height: screenHeight * 0.4,
+                        scale: 2,
+                        fit: BoxFit.fill)
+                    : Image.asset('assets/download.png',
+                        width: screenWidth * 0.85,
+                        height: screenHeight * 0.4,
+                        scale: 2,
+                        fit: BoxFit.fill),
                 SizedBox(width: 8)
               ],
             ),

@@ -19,8 +19,8 @@ class Animal {
   Animal.fromJson(Map<String, dynamic> json)
       : name = json['name'] ?? "Unknown",
         imageUrl = json['photos'] != null && json['photos'].isNotEmpty
-            ? json['photos'][0]['medium'] ?? './assets/images/download.png'
-            : './assets/images/download.png',
+            ? json['photos'][0]['medium'] ?? ''
+            : '',
         type = json['type'] ?? "Unknown",
         breed = json['breeds']['primary'] ?? "Unknown",
         furColor = json['colors']['primary'] ?? "Unknown",

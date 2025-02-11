@@ -36,6 +36,6 @@ class AnimalDetails {
         name = json['name'] ?? "Unknown",
         description = json['description'] ?? "Unknown",
         imageUrl = json['photos'] != null && json['photos'].isNotEmpty
-            ? json['photos'][0]['medium'] ?? './assets/images/download.png'
-            : './assets/images/download.png';
+            ? json['photos'][0]['medium'] ?? ''
+            : '';
 }

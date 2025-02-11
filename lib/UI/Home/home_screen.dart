@@ -60,8 +60,11 @@ class AnimalWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SizedBox(width: 12),
-                    Image.network(animal.imageUrl,
-                        width: 84, height: 84, scale: 1, fit: BoxFit.fill),
+                    animal.imageUrl != ''
+                        ? Image.network(animal.imageUrl,
+                            width: 84, height: 84, scale: 1, fit: BoxFit.fill)
+                        : Image.asset('assets/download.png',
+                            width: 84, height: 84, scale: 1, fit: BoxFit.fill),
                     SizedBox(width: 24),
                     Flexible(
                       child: Column(
