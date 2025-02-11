@@ -5,7 +5,6 @@ import 'package:flutter_application_1/UI/Home/home_view_model.dart';
 import 'package:flutter_application_1/UI/root_view.dart';
 import 'package:provider/provider.dart';
 import 'package:network_inspector/network_inspector.dart';
-import 'package:flutter_application_1/UI/ContactUs/contact_us_view_model.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
