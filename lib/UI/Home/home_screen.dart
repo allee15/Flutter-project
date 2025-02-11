@@ -11,10 +11,12 @@ class HomeScreen extends StatelessWidget {
         appBar: AppBar(title: Text("Home")),
         body: Consumer<HomeViewmodel>(builder: (context, viewModel, child) {
           if (viewModel.isLoading) {
-            return Center(child: CircularProgressIndicator());
+            return Center(child: CircularProgressIndicator(color: Colors.teal));
           }
           if (viewModel.errorMessage != null) {
-            return Center(child: Text(viewModel.errorMessage!));
+            return Center(
+                child: Text(viewModel.errorMessage!,
+                    style: TextStyle(color: Colors.teal)));
           }
 
           if (viewModel.animals.isNotEmpty) {
@@ -58,24 +60,25 @@ class AnimalWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SizedBox(width: 12),
-                    Image.network(
-                        'https://recorder.ro/wp-content/uploads/2025/01/Main-Buzau-2-680x445.png',
-                        width: 84,
-                        height: 84,
-                        scale: 2,
-                        fit: BoxFit.fill),
+                    Image.network(animal.imageUrl,
+                        width: 84, height: 84, scale: 1, fit: BoxFit.fill),
                     SizedBox(width: 24),
-                    Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Name: ${animal.name}"),
-                          Text("Age: ${animal.age}",
-                              style: TextStyle(color: Colors.teal)),
-                          Text("Breed: ${animal.breed}",
-                              style: TextStyle(color: Colors.blueGrey)),
-                          Text("Fur color: ${animal.furColor}",
-                              style: TextStyle(color: Colors.blueGrey))
-                        ]),
+                    Flexible(
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Name: ${animal.name}", maxLines: 3),
+                            Text("Age: ${animal.age}",
+                                style: TextStyle(color: Colors.teal),
+                                maxLines: 3),
+                            Text("Breed: ${animal.breed}",
+                                style: TextStyle(color: Colors.blueGrey),
+                                maxLines: 3),
+                            Text("Fur color: ${animal.furColor}",
+                                style: TextStyle(color: Colors.blueGrey),
+                                maxLines: 3)
+                          ]),
+                    ),
                     SizedBox(width: 12)
                   ],
                 ),

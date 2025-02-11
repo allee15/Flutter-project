@@ -7,8 +7,10 @@ class TokenAPi {
     String url = 'https://api.petfinder.com/v2/oauth2/token';
     Map<String, String> body = {
       "grant_type": "client_credentials",
-      "client_id": dotenv.env['CLIENT_ID'].toString(),
-      "client_secret": dotenv.env['CLIENT_SECRET'].toString()
+      "client_id":
+          "QZQIFLBQ2m0iDOnkCh1Kwt0gnRJuex4bmFZ3c95VxerdBfZsss", //dotenv.env['CLIENT_ID'].toString(),
+      "client_secret":
+          "LHyWszY7wKMEmKveV50dkdCUQjsvG9N63oTPXEL0" //dotenv.env['CLIENT_SECRET'].toString()
     };
 
     final response = await http.post(Uri.parse(url), body: body);

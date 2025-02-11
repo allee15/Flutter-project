@@ -20,9 +20,7 @@ class _TabBarScreenState extends State<TabBarScreen> {
               items: const <BottomNavigationBarItem>[
                 BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.contact_mail), label: "Contact us"),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.person), label: "Profile")
+                    icon: Icon(Icons.contact_mail), label: "Contact us")
               ],
               currentIndex: viewModel.selectedIndex,
               selectedItemColor: Colors.deepOrange,

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Service/token_service.dart';
 import 'package:flutter_application_1/UI/TabBar/tab_bar_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:shake/shake.dart';
+import 'package:network_inspector/network_inspector.dart';
 
 class RootViewModel extends ChangeNotifier {
   final TokenService _tokenService = TokenService();
@@ -22,7 +24,29 @@ class RootViewModel extends ChangeNotifier {
   }
 }
 
-class RootView extends StatelessWidget {
+class RootView extends StatefulWidget {
+  @override
+  _RootViewState createState() => _RootViewState();
+}
+
+class _RootViewState extends State<RootView> {
+  ShakeDetector? detector;
+
+  @override
+  void initState() {
+    super.initState();
+    detector = ShakeDetector.autoStart(onPhoneShake: () {
+      NetworkInspector.initialize();
+      // NetworkInspector().show(context);
+    });
+  }
+
+  @override
+  void dispose() {
+    detector?.stopListening();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<RootViewModel>(builder: (context, viewModel, child) {
